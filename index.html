@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Магвай</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Mulish:wght@200..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header center">
+        <img src="logo.svg" alt="logo" class="logo" />
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link">услуги</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">абонементы</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">почему мы</a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">оборудование</a>
+            </li>
+            <li class="nav__item"><a href="#" class="nav__link">акции</a></li>
+            <li class="nav__item"><a href="#" class="nav__link">faq</a></li>
+            <li class="nav__item">
+              <a href="#" class="nav__link">контакты</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__buttons">
+          <button class="button button-phone">
+            <span class="button__content"
+              ><img src="phone.svg" alt="phone"
+            /></span>
+          </button>
+          <button class="button button-app button-header">
+            <span class="button__content">Оставить заявку</span>
+          </button>
+        </div>
+        <div class="burger">
+          <img src="/burger.svg" alt="burger" />
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero__content center">
+          <h1 class="title">
+            Полет Илона Маска <br />
+            и DOGIE COIN
+          </h1>
+          <p class="hero__text">
+            В прошлый четверг все офигели от полета DOGIE COIN на марс.
+          </p>
+          <button class="button button-app button-hero">
+            <span class="button__content">Оставить заявку</span>
+          </button>
+        </div>
+      </section>
+
+      <main class="main center">
+        <h2 class="title">карточки</h2>
+        <div class="loader"></div>
+        <div class="main__wrapper"></div>
+        <button class="button button-download">
+          <span class="button__content">Загрузить еще</span>
+        </button>
+      </main>
+
+      <button class="scroll">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="current"
+          class="scroll__img"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M12 5V19M12 5L6 11M12 5L18 11"
+              stroke="current"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></path>
+          </g>
+        </svg>
+      </button>
+
+      <div class="application-modal"></div>
+
+      <div class="overlay"></div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

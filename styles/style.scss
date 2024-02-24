@@ -1,0 +1,510 @@
+@import 'vars';
+
+@keyframes rotate {
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $scrollbar-track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbar-thumb-color;
+        border: 2px solid #666;
+        border-radius: 3px;
+    }
+}
+
+.center {
+    padding: 0px 100px 0px 100px;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    padding-bottom: 256px;
+    background-color: $main-bg-color;
+    box-sizing: border-box;
+    font-family: $main-font;
+    position: relative;
+}
+
+.button {
+    position: relative;
+    width: calc(293px - 6px - 10px - 10px - 6px);
+    height: 60px;
+    background: linear-gradient(to right, #fff 50%, $button-color 50%);
+    background-size: 200% 100%;
+    background-position: right;
+    transition: all .35s ease-out;
+    border: none;
+    color: $light-text-color;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    text-transform: uppercase;
+    display: inline-block;
+    transform: skew(-20deg);
+    margin-right: 10px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background-color: #fff;
+        width: 6px;
+        right: -10px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-position: left;
+        color: $button-hover-text-color;
+
+        &::after {
+            background-color: $button-color;
+        }
+    }
+
+    &-phone {
+        width: calc(92.5px - 10px - 6px - 6px);
+        border: 1px solid #fff;
+        background: linear-gradient(to right, $button-color 50%, transparent 50%);
+        background-size: 200% 100%;
+        background-position: right;
+        transition: all .35s ease-out;
+        opacity: 0.4;
+
+        &::after {
+            content: '';
+            display: none;
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &-hero {
+        margin-left: 10px;
+    }
+
+    &-download {
+        align-self: center;
+    }
+
+    &-modal {
+        display: none;
+        background: linear-gradient(to right, $modal-button-hover-bg-color 50%, $button-color 50%);
+        background-size: 200% 100%;
+        background-position: right;
+
+        &:hover {
+            color: $light-text-color;
+
+            &::after {
+                background-color: $modal-button-hover-bg-color;
+            }
+        }
+
+        &::after {
+            background-color: $button-color;
+        }
+    }
+
+    &-cancel {
+        background: none;
+        width: unset;
+        height: unset;
+        transform: skew(0deg);
+        color: $card-dark-color;
+        margin-right: 0;
+
+        &:hover {
+            color: red;
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+
+    &__content {
+        display: inline-block;
+        transform: skew(20deg);
+    }
+}
+
+.title {
+    color: $light-text-color;
+    font-size: 42px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.card {
+    background: $card-bg-color;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.08);
+    min-height: 400px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__img {
+        width: 100%;
+        height: 185px;
+    }
+
+    &__content {
+        padding: 25px 24px 30px 24px;
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 20px;
+        height: 100%;
+    }
+
+    &__label {
+        font-family: $second-font;
+        color: $card-dark-color;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 186%;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 162%;
+        color: $card-dark-color;
+        text-transform: capitalize;
+    }
+
+    &__text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 171%;
+        color: $card-black-color;
+    }
+
+    &__info {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 200%;
+        color: $card-black-color;
+
+        &-span {
+            font-weight: 700;
+        }
+    }
+
+    &__button {
+        background: $card-button-bg-color;
+        border: none;
+        width: 100%;
+        height: 50px;
+        color: $light-text-color;
+        font-weight: 600;
+        font-size: 14px;
+        font-family: $second-font;
+        transition: all .3s;
+        margin-top: auto;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $card-button-hover-bg-color;
+            color: $card-button-hover-text-color;
+            border: 1px solid $card-button-hover-border-color;
+        }
+    }
+}
+
+.scroll {
+    display: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, $card-button-hover-bg-color 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right;
+    transition: all .35s ease-out;
+    border: none;
+
+    &__img {
+        stroke: $button-color;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-position: left;
+    }
+}
+
+.application-modal {
+    background-color: $modal-bg-color;
+    display: none;
+    flex-flow: column nowrap;
+    gap: 20px;
+    padding: 35px 25px;
+    align-items: center;
+    position: absolute;
+    box-sizing: border-box;
+    width: 500px;
+    border-radius: 10px;
+    z-index: 20;
+    top: 5%;
+    right: 50%;
+    transform: translateX(50%);
+    -webkit-box-shadow: 0px 0px 10px 5px $modal-shadow-color;
+    -moz-box-shadow: 0px 0px 10px 5px $modal-shadow-color;
+    box-shadow: 0px 0px 10px 5px $modal-shadow-color;
+    transition: all .3s;
+
+    &__cross {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        border: 1px solid transparent;
+
+        &:hover {
+            border: 1px solid $cross-stroke-color;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        stroke: $cross-stroke-color;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 150%;
+        color: $modal-text-color;
+    }
+
+    &__input, &__textarea {
+        width: 100%;
+        border: 1px solid $modal-inputs-border-color;
+        border-radius: 10px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 120%;
+
+        &::placeholder {
+            opacity: 0.4;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $modal-inputs-focus-border-color;
+        }
+    }
+
+    &__input {
+        height: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &__textarea {
+        height: 100px;
+        padding: 15px;
+        overflow: hidden;
+        resize: none;
+    }
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255 255 255 / 50%);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.confirm-message {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    align-items: center;
+
+    &__text {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 150%;
+        color: $modal-text-color;
+    }
+}
+
+.error-message {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 150%;
+    color: $light-text-color;
+}
+
+.loader {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    margin: 0 auto;
+    display: none;
+    margin-bottom: 30px;
+
+    &::before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        inset: 0px;
+        border-radius: 50%;
+        border: 5px solid #FFF;
+        animation: prixClipFix 2s linear infinite ;
+    }
+}
+
+@media (max-width: 768px) {
+    .center {
+        padding: 0px 50px 0px 50px;
+    }
+
+    .button {
+        width: calc(201.5px - 6px - 10px - 10px - 6px);
+
+        &-phone {
+            width: calc(92.5px - 10px - 6px - 6px);
+        }
+
+        &-hero, &-download {
+            width: calc(293px - 6px - 10px - 10px - 6px);
+        }
+    }
+
+    .title {
+        font-size: 38px
+    }
+
+    .card {
+        &__content {
+            padding: 25px 25px 30px 25px;
+        }
+
+        &__info {
+            margin-top: 24px;
+        }
+    }
+
+    #app {
+        padding-bottom: 156px;
+        min-height: 100dvh;
+    }
+
+    .scroll {
+        bottom: 10px;
+        right: 10px;    
+    }
+}
+
+@media (max-width: 425px) {
+    .center {
+        padding: 0px 15px 0px 15px
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .button {
+        height: 46px;
+        width: calc(228px - 6px - 10px);
+
+        &-phone, &-header {
+            height: 60px;
+            width: calc(100% - 20px);
+            margin-right: 0;
+        }
+
+        &-header  {
+            &::after {
+                content: '';
+                display: none;
+            }
+        }
+
+        &-download {
+            width: calc(293px - 6px - 10px - 10px - 6px);
+            height: 60px
+        }
+    }
+
+    .card {
+        &__content {
+            padding: 25px 24px 30px 24px;
+        }
+
+        &__info {
+            margin-top: 0;
+        }
+    }
+
+    #app {
+        padding-bottom: 43px;
+    }
+
+    .application-modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        transform: none;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@import 'header';
+@import 'hero';
+@import 'main';

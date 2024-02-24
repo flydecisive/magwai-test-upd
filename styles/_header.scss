@@ -1,0 +1,145 @@
+.header {
+    width: 100%;
+    margin-bottom: 28px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: 'logo nav buttons';
+    align-items: center;
+    background-color: $main-bg-color;
+    padding-top: 28px;
+    z-index: 10;
+
+    &__buttons {
+        grid-area: buttons;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-right: 10px;
+    }
+} 
+
+.logo {
+    grid-area: logo;
+}
+
+.nav {
+    grid-area: nav;
+
+    &__list {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        gap: 42px;
+    }
+
+    &__item {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $light-text-color;
+        transition: all .3s;
+
+        &:hover {
+            color: $nav-hover-color;
+        }
+    }
+}
+
+.burger {
+    grid-area: burger;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding-top: 30px;
+        grid-template-areas: 
+        'burger logo buttons'
+        'nav nav nav';
+        justify-content: space-between;
+        margin-bottom: 27px;
+
+        &__buttons {
+            gap: 0;
+        }
+    }
+
+    .burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+    }
+
+    .nav {
+        display: none;
+        margin-top: 79px;
+        
+        &__list {
+            flex-flow: column nowrap;
+            align-items: flex-start;
+            gap: 15px;
+            width: 100%;
+        }
+
+        &__item {
+            font-size: 36px;
+        }
+
+        &__link {
+            color: $mobile-nav-item-color; 
+            text-shadow: -1px 1px 1px $mobile-nav-item-stroke, 1px 1px 1px $mobile-nav-item-stroke, 1px -1px 0 $mobile-nav-item-stroke, -1px -1px 0 $mobile-nav-item-stroke;
+
+            &:hover {
+                text-shadow: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .header {
+        padding-top: 15px;
+        grid-template-areas: 
+        'burger logo'
+        'nav nav'
+        'buttons buttons';
+        margin-bottom: 19px;
+        
+        &__buttons {
+            display: none;
+            flex-flow: column nowrap;
+            gap: 6px;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+
+    .nav {
+        display: none;
+        margin-top: 18px;
+        margin-bottom: 51px;
+        align-self: start;
+
+        &__item {
+            font-size: 20px;
+        }
+    }
+
+    .logo {
+        width: 112.5px;
+        height: 38.41px;
+        justify-self: end;
+    }
+
+    .burger {
+        height: 38.41px;
+        align-self: start;
+    }
+}

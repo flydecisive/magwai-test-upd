@@ -1,0 +1,40 @@
+.main {
+    box-sizing: border-box;
+    padding-top: 134px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: auto;
+        gap: 30px;
+        margin-top: 53px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding-top: 44px;
+
+        &__wrapper {
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 40px;
+            gap: 20px 24px;
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .main {
+        padding-top: 48px;
+
+        &__wrapper {
+            grid-template-columns: 1fr;
+            margin-top: 30px;
+            margin-bottom: 38px;
+            gap: 20px;
+        }
+    }
+}
